@@ -1,0 +1,14 @@
+{
+  "name": "city-info-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for city information website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
