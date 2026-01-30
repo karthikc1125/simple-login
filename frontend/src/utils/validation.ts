@@ -2,14 +2,19 @@
  * Validation utilities for form inputs with strong validation rules
  */
 
+export interface ValidationResult {
+  valid: boolean;
+  error?: string;
+}
+
 // Common weak passwords to prevent
 const WEAK_PASSWORDS = [
   'password', 'password123', '12345678', 'qwerty123', 'abc123abc',
   'letmein', 'welcome', 'monkey', 'dragon', 'master', 'admin', 'root'
 ];
 
-export const validateEmail = (email: string): { valid: boolean; error?: string } => {
-  if (!email.trim()) {
+export const validateEmail = (email: string): ValidationResult => {
+  if (!email || !email.trim()) {
     return { valid: false, error: 'Email is required' };
   }
 
@@ -57,7 +62,7 @@ export const validateEmail = (email: string): { valid: boolean; error?: string }
   return { valid: true };
 };
 
-export const validatePassword = (password: string): { valid: boolean; error?: string } => {
+export const validatePassword = (password: string): ValidationResult => {
   if (!password) {
     return { valid: false, error: 'Password is required' };
   }
@@ -110,7 +115,7 @@ export const validatePassword = (password: string): { valid: boolean; error?: st
   return { valid: true };
 };
 
-export const validateName = (name: string): { valid: boolean; error?: string } => {
+export const validateName = (name: string): ValidationResult => {
   if (!name.trim()) {
     return { valid: false, error: 'Name is required' };
   }
