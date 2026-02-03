@@ -4,7 +4,13 @@
 
 import cityImage from "../assets/city.jpg";
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 const Home = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
   return (
     <>
       <div style={styles.container}>
@@ -14,6 +20,27 @@ const Home = () => {
           <p style={styles.subText}>
             Discover cities, blogs, restaurants, and amazing places
           </p>
+
+          {!user && (
+            <div style={styles.buttonGroup}>
+              <button
+                style={styles.loginBtn}
+                onClick={() => navigate("/login")}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#1d4ed8")}
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#2563eb")}
+              >
+                Login
+              </button>
+              <button
+                style={styles.registerBtn}
+                onClick={() => navigate("/register")}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#eff6ff")}
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -21,6 +48,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 const styles = {
   container: {
@@ -71,6 +99,7 @@ const styles = {
     borderRadius: "6px",
     fontSize: "15px",
     cursor: "pointer",
+    transition: "background-color 0.2s",
   },
 
   registerBtn: {
@@ -81,5 +110,6 @@ const styles = {
     borderRadius: "6px",
     fontSize: "15px",
     cursor: "pointer",
+    transition: "background-color 0.2s",
   },
 };

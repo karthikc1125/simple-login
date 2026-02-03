@@ -7,11 +7,7 @@ export interface ValidationResult {
   error?: string;
 }
 
-// Common weak passwords to prevent
-const WEAK_PASSWORDS = [
-  'password', 'password123', '12345678', 'qwerty123', 'abc123abc',
-  'letmein', 'welcome', 'monkey', 'dragon', 'master', 'admin', 'root'
-];
+
 
 export const validateEmail = (email: string): ValidationResult => {
   if (!email || !email.trim()) {
@@ -93,14 +89,7 @@ export const validatePassword = (password: string): ValidationResult => {
     };
   }
 
-  // Check for common weak passwords
-  const lowerPassword = password.toLowerCase();
-  if (WEAK_PASSWORDS.some(weak => lowerPassword.includes(weak))) {
-    return {
-      valid: false,
-      error: 'This password is too common. Please choose a stronger password',
-    };
-  }
+
 
   // Check for repeated characters (e.g., aaaa, 1111)
   if (/(.)\1{3,}/.test(password)) {

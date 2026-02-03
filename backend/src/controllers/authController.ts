@@ -59,3 +59,44 @@ export function me(req: Request, res: Response): void {
 
   res.json(user);
 }
+export async function forgotPassword(req: Request, res: Response): Promise<void> {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      res.status(400).json({ error: "Email is required" });
+      return;
+    }
+    await authService.requestPasswordReset(email);
+    res.json({ message: "OTP sent to email" });
+  } catch (e) {
+    res.status(400).json({ error: (e as Error).message });
+  }
+}
+
+export async function verifyOTP(req: Request, res: Response): Promise<void> {
+  try {
+    const { email, otp } = req.body;
+    if (!email || !otp) {
+      res.status(400).json({ error: "Email and OTP are required" });
+      return;
+    }
+    await authService.verifyOTP(email, otp);
+    res.json({ valid: true, message: "OTP verified" });
+  } catch (e) {
+    res.status(400).json({ error: (e as Error).message });
+  }
+}
+
+export async function resetPassword(req: Request, res: Response): Promise<void> {
+  try {
+    const { email, otp, newPassword } = req.body;
+    if (!email || !otp || !newPassword) {
+      res.status(400).json({ error: "Email, OTP, and new password are required" });
+      return;
+    }
+    await authService.resetPassword(email, otp, newPassword);
+    res.json({ message: "Password reset successful" });
+  } catch (e) {
+    res.status(400).json({ error: (e as Error).message });
+  }
+}

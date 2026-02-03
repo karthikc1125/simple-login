@@ -5,7 +5,7 @@ async function seedAdmin() {
   await initializeDatabase();
 
   const adminEmail = "admin@example.com";
-  const adminPassword = "admin123";
+  const adminPassword = "Admin@12&access";
   const adminName = "Admin User";
   const adminRole = "admin";
 

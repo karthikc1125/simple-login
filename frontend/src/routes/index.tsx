@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <Layout />,
     children: [
-      { index: true, element: <Navigate to="/dashboard" replace /> },
+      { index: true, element: <Home /> },
       { path: 'forgot-password', element: <PublicOnlyRoute><ForgotPassword /></PublicOnlyRoute> },
       { path: 'dashboard', element: <ProtectedRoute><Home /></ProtectedRoute> },
       { path: 'info', element: <ProtectedRoute><Info /></ProtectedRoute> },
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       { path: 'blog', element: <ProtectedRoute><BlogList /></ProtectedRoute> },
       { path: 'blog/new', element: <ProtectedRoute adminOnly><BlogNew /></ProtectedRoute> },
       { path: 'blog/:id', element: <ProtectedRoute><BlogDetail /></ProtectedRoute> },
-      { path: '*', element: <ProtectedRoute><Navigate to="/dashboard" replace /></ProtectedRoute> },
+      { path: '*', element: <Navigate to="/" replace /> },
     ],
   },
 ]);

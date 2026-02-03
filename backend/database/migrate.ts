@@ -2,7 +2,7 @@
  * Script to run database migrations (create tables).
  */
 
-import { query } from '../backend/src/config/db';
+import { query } from '../src/config/db';
 import fs from 'fs/promises';
 import path from 'path';
 
